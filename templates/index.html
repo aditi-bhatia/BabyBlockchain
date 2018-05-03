@@ -12,7 +12,7 @@
 		<input type="radio" name="gender" value="female"> Retailer<br>
 	</form>
 
-	<form action="/action_page.php">
+	<form action="{{url_for('register')}}" method="post">
 		<fieldset>
 			<legend>Register your products:</legend>
 			Product Name:<br>
@@ -22,7 +22,7 @@
 			Quantity:<br>
 			<input type="text" name="quantity" value=" "><br>
 			Price per unit:<br>
-			<input type="text" name="price" value=" "><br>			
+			<input type="text" name="price" value=" "><br>
 			Manufacturer (Sender) Name:<br>
 			<input type="text" name="seller" value=" "><br><br>
 
@@ -31,7 +31,7 @@
 	</form>
 
 
-	<form action="/action_page.php">
+	<form action="{{url_for('transfer')}}", method="post">
 		<fieldset>
 			<legend>Purchase/transfer products:</legend>
 			Product Name:<br>
