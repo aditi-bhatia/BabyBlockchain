@@ -21,7 +21,7 @@ Akinfemi	Akin-Aluko
 --->manufacturer->retailer [GET updated retailer wallet] <br />
 --->Etc. there are probably some that I am forgetting <br />
 
-
+## How to run
 #### Start nodes
 ```js
 FLASK_APP=server.py flask run --port=5001
