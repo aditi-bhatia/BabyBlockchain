@@ -13,13 +13,13 @@ Akinfemi	Akin-Aluko
 
 ## TO DO LIST
 
--> UI should be able to GET and POST all requests, responses and data. Connectivity code needs to be written for this (use the updated UI code I pushed -aditi)
--> FLASK API for all requests needs to be written:
---->GET by product_id
---->GET all products by a specific manufacturer
---->Transfer products [POST new transactions for retailer manufacturer ->]
---->manufacturer->retailer [GET updated retailer wallet]
---->Etc. there are probably some that I am forgetting
+-> UI should be able to GET and POST all requests, responses and data. Connectivity code needs to be written for this (use the updated UI code I pushed -aditi)  <br />
+-> FLASK API for all requests needs to be written: <br />
+--->GET by product_id <br />
+--->GET all products by a specific manufacturer <br />
+--->Transfer products [POST new transactions for retailer manufacturer ->] <br />
+--->manufacturer->retailer [GET updated retailer wallet] <br />
+--->Etc. there are probably some that I am forgetting <br />
 
 
 #### Start nodes
