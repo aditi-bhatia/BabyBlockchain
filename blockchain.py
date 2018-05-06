@@ -1,5 +1,7 @@
 import hashlib
 import json
+import requests
+
 from time import time
 from urllib.parse import urlparse
 from uuid import uuid4
@@ -20,6 +22,8 @@ class Blockchain:
         """
 
         parsed_url = urlparse(address)
+        print("PARSED URL: ")
+        print(parsed_url.netloc)
         self.nodes.add(parsed_url.netloc)
 
     def valid_chain(self, chain):

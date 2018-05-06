@@ -11,11 +11,11 @@ node_identifier = str(uuid4()).replace('-', '')
 
 # Instantiate the Blockchain
 blockchain = Blockchain()
-blockchain.register_node('http://127.0.0.1/5001')
-blockchain.register_node('http://127.0.0.1/5002')
-blockchain.register_node('http://127.0.0.1/5003')
-blockchain.register_node('http://127.0.0.1/5004')
-blockchain.register_node('http://127.0.0.1/5005')
+#blockchain.register_node('http://127.0.0.1/5001')
+#blockchain.register_node('http://127.0.0.1/5002')
+#blockchain.register_node('http://127.0.0.1/5003')
+#blockchain.register_node('http://127.0.0.1/5004')
+#blockchain.register_node('http://127.0.0.1/5005')
 
 
 @app.route("/")
