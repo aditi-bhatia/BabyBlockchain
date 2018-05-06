@@ -1,4 +1,4 @@
-## Blockchain for Product Inventory
+## Project BabyBlockchain: Blockchain for Baby Product Inventory
 ### Team Incognito: CMPE 273, Distributed Systems
 
 Aditi	Bhatia
