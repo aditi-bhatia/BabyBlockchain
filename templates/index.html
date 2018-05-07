@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+	<title>HTML Template</title>
+
+	<!-- Google font -->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CVarela+Round" rel="stylesheet">
+
+	<!-- Bootstrap -->
+	<link type="text/css" rel="stylesheet" href="{{ url_for('static',filename='styles/bootstrap.min.css') }}" />
+
+	<!-- Owl Carousel -->
+	<link type="text/css" rel="stylesheet" href="{{ url_for('static',filename='styles/owl.carousel.css') }}" />
+	<link type="text/css" rel="stylesheet" href="{{ url_for('static',filename='styles/owl.theme.default.css') }}" />
+
+	<!-- Magnific Popup -->
+	<link type="text/css" rel="stylesheet" href="{{ url_for('static',filename='styles/magnific-popup.css') }}" />
+
+	<!-- Font Awesome Icon -->
+	<link rel="stylesheet" href="{{ url_for('static',filename='styles/font-awesome.min.css') }}">
+
+	<!-- Custom stlylesheet -->
+	<link type="text/css" rel="stylesheet" href="{{ url_for('static',filename='styles/style.css') }}" />
+
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+	<!-- Header -->
+	<header id="home">
+		<!-- Background Image -->
+		<div class="bg-img" style="background-image: url('static/img/baby.jpg');">
+			<div class="overlay"></div>
+		</div>
+		<!-- /Background Image -->
+
+		<!-- Nav -->
+		<nav id="nav" class="navbar nav-transparent">
+			<div class="container">
+
+				<div class="navbar-header">
+					<!-- Logo -->
+					<div class="navbar-brand">
+						<a href="index.html">
+							<img class="logo" src="{{ url_for('static',filename='img/logo.png') }}" alt="logo">
+							<img class="logo-alt" src="{{ url_for('static',filename='img/logo-alt.png') }}" alt="logo">
+						</a>
+					</div>
+					<!-- /Logo -->
+
+					<!-- Collapse nav button -->
+					<div class="nav-collapse">
+						<span></span>
+					</div>
+					<!-- /Collapse nav button -->
+				</div>
+
+				<!--  Main navigation  -->
+				<ul class="main-nav nav navbar-nav navbar-right">
+					<li><a href="#home">Home</a></li>
+					<li><a href="#manufacturer">Manufacturer</a></li>
+					<li><a href="#retailer">Retailer</a></li>
+					<li><a href="#transactions">Transactions</a></li>
+					<li><a href="#featured">Featured Items</a></li>
+					<li><a href="#team">Team</a></li>
+
+				</ul>
+				<!-- /Main navigation -->
+
+			</div>
+		</nav>
+		<!-- /Nav -->
+
+		<!-- home wrapper -->
+		<div class="home-wrapper">
+			<div class="container">
+				<div class="row">
+
+					<!-- home content -->
+					<div class="col-md-10 col-md-offset-1">
+						<div class="home-content">
+							<br>
+							<br>
+							<h1 class="white-text">Baby Product Registration And Transfer</h1>
+							<p class="white-text"><b>CMPE 273 Enterprise Distributed Systems final project by Aditi Bhatia, Aravindhan Elayakumar, Akinfemi Akin-Aluko, Harshrajsinh Rathod, and Venkat Pushpak Gollamudi.</b>
+								<br><br>
+								Baby product manufacturers, register your products here. Retailers, purchase items from manufacturers directly.
+
+							</p>
+							<button class="white-btn"><a href="#manufacturer">I am a manufacturer</a></button>
+							<button class="main-btn"><a href="#retailer">I am a retailer</a></button>
+							<form>
+
+
+
+							
+						</div>
+					</div>
+					<!-- /home content -->
+
+				</div>
+			</div>
+		</div>
+		<!-- /home wrapper -->
+
+	</header>
+	<!-- /Header -->
+
+	<!-- About -->
+	<div id="manufacturer" class="section md-padding">
+
+		<!-- Container -->
+		<div class="container">
+
+			<!-- Row -->
+			<div class="row">
+
+				<!-- Section header -->
+				<div class="section-header text-center">
+					<h2 class="title">Welcome, Manufacturer!</h2>
+				</div>
+				<!-- /Section header -->
+
+				<!-- about -->
+				<div class="col-md-10 col-md-offset-1">
+						<div class="manufacturer">
+							<br>
+							
+						
+							<form action="{{url_for('register')}}" method="post">
+								<fieldset>
+									<legend>Register your products:</legend>
+									Product Name:<br>
+									<input type="text" name="product" value=" "><br>
+									Product Link:<br>
+									<input type="text" name="link" value=" "><br>
+									Quantity:<br>
+									<input type="text" name="quantity" value=" "><br>
+									Price per unit:<br>
+									<input type="text" name="price" value=" "><br>
+									Manufacturer (Sender) Name:<br>
+									<input type="text" name="seller" value=" "><br><br>
+
+									<input type="submit" value="Submit">
+								</fieldset>
+							</form>
+
+
+							
+						</div>
+					</div>
+				<!-- /about -->
+
+			</div>
+			<!-- /Row -->
+
+		</div>
+		<!-- /Container -->
+
+	</div>
+	<!-- /manufacturer -->
+
+
+
+
+
+
+
+
+<div id="retailer" class="section md-padding">
+
+		<!-- Container -->
+		<div class="container">
+
+			<!-- Row -->
+			<div class="row">
+
+				<!-- Section header -->
+				<div class="section-header text-center">
+					<h2 class="title">Welcome, Retailer!</h2>
+				</div>
+				<!-- /Section header -->
+
+				<!-- about -->
+				<div class="col-md-10 col-md-offset-1">
+						<div class="retailer">
+							<br>
+
+						
+							<form action="{{url_for('transfer')}}", method="post">
+								<fieldset>
+									<legend>Purchase/transfer products:</legend>
+									Product Name:<br>
+									<input type="text" name="product" value=" "><br>
+									Manufacturer (Sender) Name:<br>
+									<input type="text" name="sender" value=" "><br>
+									Retailer (Recipient) Name:<br>
+									<input type="text" name="recipient" value=" "><br>
+									Quantity:<br>
+									<input type="text" name="quantity" value=" "><br><br>
+									<input type="submit" value="Submit">
+								</fieldset>
+							</form>
+
+
+							
+						</div>
+					</div>
+				<!-- /about -->
+
+			</div>
+			<!-- /Row -->
+
+		</div>
+		<!-- /Container -->
+
+	</div>
+	<!-- /Retailer -->
+
+
+
+
+
+
+
+
+
+
+	<!-- Why Choose Us -->
+	<div id="transactions" class="section md-padding bg-grey">
+
+		<!-- Container -->
+		<div class="container">
+
+			<!-- Row -->
+			<div class="row">
+
+				<!-- why choose us content -->
+				<div class="col-md-6">
+					<div class="section-header">
+						<h2 class="title">List of Transactions: TO DO</h2>
+					</div>
+					<p>Molestie at elementum eu facilisis sed odio. Scelerisque in dictum non consectetur a erat. Aliquam id diam maecenas ultricies mi eget mauris. Ultrices sagittis orci a scelerisque purus.</p>
+					<div class="feature">
+						<i class="fa fa-check"></i>
+						<p>Quis varius quam quisque id diam vel quam elementum.</p>
+					</div>
+					<div class="feature">
+						<i class="fa fa-check"></i>
+						<p>Mauris augue neque gravida in fermentum.</p>
+					</div>
+					<div class="feature">
+						<i class="fa fa-check"></i>
+						<p>Orci phasellus egestas tellus rutrum.</p>
+					</div>
+					<div class="feature">
+						<i class="fa fa-check"></i>
+						<p>Nec feugiat nisl pretium fusce id velit ut tortor pretium.</p>
+					</div>
+				</div>
+				<!-- /why choose us content -->
+
+			</div>
+			<!-- /Row -->
+
+		</div>
+		<!-- /Container -->
+
+	</div>
+	<!-- /Why Choose Us -->
+
+
+	<!-- Portfolio -->
+	<div id="featured" class="section md-padding bg-grey">
+
+		<!-- Container -->
+		<div class="container">
+
+			<!-- Row -->
+			<div class="row">
+
+				<!-- Section header -->
+				<div class="section-header text-center">
+					<h2 class="title">Featured Baby Products</h2>
+				</div>
+				<!-- /Section header -->
+
+				<!-- Work -->
+				<div class="col-md-4 col-xs-6 work">
+					<img class="img-responsive" src="{{ url_for('static',filename='img/baby/bottle.jpg') }}" alt="">
+					<div class="overlay"></div>
+					<div class="work-content">
+						<span>Category</span>
+						<h3>Baby bottles</h3>
+						<div class="work-link">
+							<a href="#"><i class="fa fa-external-link"></i></a>
+							<a class="lightbox" href="{{ url_for('static',filename='img/baby/bottle.jpg') }}"><i class="fa fa-search"></i></a>
+						</div>
+					</div>
+				</div>
+				<!-- /Work -->
+
+				<!-- Work -->
+				<div class="col-md-4 col-xs-6 work">
+					<img class="img-responsive" src="{{ url_for('static',filename='img/baby/diaper.jpg') }}" alt="">
+					<div class="overlay"></div>
+					<div class="work-content">
+						<span>Category</span>
+						<h3>Diapers</h3>
+						<div class="work-link">
+							<a href="#"><i class="fa fa-external-link"></i></a>
+							<a class="lightbox" href="{{ url_for('static',filename='img/baby/diaper.jpg') }}"><i class="fa fa-search"></i></a>
+						</div>
+					</div>
+				</div>
+				<!-- /Work -->
+
+				<!-- Work -->
+				<div class="col-md-4 col-xs-6 work">
+					<img class="img-responsive" src="{{ url_for('static',filename='img/baby/food.jpg') }}" alt="">
+					<div class="overlay"></div>
+					<div class="work-content">
+						<span>Category</span>
+						<h3>Baby food</h3>
+						<div class="work-link">
+							<a href="#"><i class="fa fa-external-link"></i></a>
+							<a class="lightbox" href="{{ url_for('static',filename='img/baby/food.jpg') }}"><i class="fa fa-search"></i></a>
+						</div>
+					</div>
+				</div>
+				<!-- /Work -->
+
+				<!-- Work -->
+				<div class="col-md-4 col-xs-6 work">
+					<img class="img-responsive" src="{{ url_for('static',filename='img/baby/items.png') }}" alt="">
+					<div class="overlay"></div>
+					<div class="work-content">
+						<span>Category</span>
+						<h3>Baby Items</h3>
+						<div class="work-link">
+							<a href="#"><i class="fa fa-external-link"></i></a>
+							<a class="lightbox" href="{{ url_for('static',filename='img/baby/items.png') }}"><i class="fa fa-search"></i></a>
+						</div>
+					</div>
+				</div>
+				<!-- /Work -->
+
+				<!-- Work -->
+				<div class="col-md-4 col-xs-6 work">
+					<img class="img-responsive" src="{{ url_for('static',filename='img/baby/shoes.jpg') }}" alt="">
+					<div class="overlay"></div>
+					<div class="work-content">
+						<span>Category</span>
+						<h3>Baby shoes</h3>
+						<div class="work-link">
+							<a href="#"><i class="fa fa-external-link"></i></a>
+							<a class="lightbox" href="{{ url_for('static',filename='img/baby/shoes.jpg') }}"><i class="fa fa-search"></i></a>
+						</div>
+					</div>
+				</div>
+				<!-- /Work -->
+
+				<!-- Work -->
+<!-- 				<div class="col-md-4 col-xs-6 work">
+					<img class="img-responsive" src="./img/baby/toys.jpg" alt="">
+					<div class="overlay"></div>
+					<div class="work-content">
+						<span>Category</span>
+						<h3>Baby toys</h3>
+						<div class="work-link">
+							<a href="#"><i class="fa fa-external-link"></i></a>
+							<a class="lightbox" href="./img/baby/toys.jpeg"><i class="fa fa-search"></i></a>
+						</div>
+					</div>
+				</div> -->
+				<!-- /Work -->
+
+			</div>
+			<!-- /Row -->
+
+		</div>
+		<!-- /Container -->
+
+	</div>
+	<!-- /Portfolio -->
+
+
+
+
+	<!-- Team -->
+	<div id="team" class="section md-padding">
+
+		<!-- Container -->
+		<div class="container">
+
+			<!-- Row -->
+			<div class="row">
+
+				<!-- Section header -->
+				<div class="section-header text-center">
+					<h2 class="title">Our Team</h2>
+				</div>
+				<!-- /Section header -->
+
+				<!-- team -->
+				<div class="col-sm-4">
+					<div class="team">
+						<div class="team-img">
+							<img class="img-responsive" src="{{ url_for('static',filename='img/headshots/aditi.png') }}" alt="">
+							<div class="overlay">
+								<div class="team-social">
+									<a href="#"><i class="fa fa-facebook"></i></a>
+									<a href="#"><i class="fa fa-google-plus"></i></a>
+									<a href="#"><i class="fa fa-twitter"></i></a>
+								</div>
+							</div>
+						</div>
+						<div class="team-content">
+							<h3>Aditi Bhatia</h3>
+							<span>Software Engineer</span>
+						</div>
+					</div>
+				</div>
+				<!-- /team -->
+
+				<!-- team -->
+				<div class="col-sm-4">
+					<div class="team">
+						<div class="team-img">
+							<img class="img-responsive" src="{{ url_for('static',filename='img/team2.jpg') }}" alt="">
+							<div class="overlay">
+								<div class="team-social">
+									<a href="#"><i class="fa fa-facebook"></i></a>
+									<a href="#"><i class="fa fa-google-plus"></i></a>
+									<a href="#"><i class="fa fa-twitter"></i></a>
+								</div>
+							</div>
+						</div>
+						<div class="team-content">
+							<h3>Aravindhan Elayakumar</h3>
+							<span>Software Engineer</span>
+						</div>
+					</div>
+				</div>
+				<!-- /team -->
+
+				<!-- team -->
+				<div class="col-sm-4">
+					<div class="team">
+						<div class="team-img">
+							<img class="img-responsive" src="{{ url_for('static',filename='img/headshots/femi.jpeg') }}" alt="">
+							<div class="overlay">
+								<div class="team-social">
+									<a href="#"><i class="fa fa-facebook"></i></a>
+									<a href="#"><i class="fa fa-google-plus"></i></a>
+									<a href="#"><i class="fa fa-twitter"></i></a>
+								</div>
+							</div>
+						</div>
+						<div class="team-content">
+							<h3>Akinfemi Akin-aluko</h3>
+							<span>Software Engineer</span>
+						</div>
+					</div>
+				</div>
+				<!-- /team -->
+
+			</div>
+			<!-- /Row -->
+<!-- Row -->
+			<div class="row">
+
+				<!-- team -->
+				<div class="col-sm-4">
+					<div class="team">
+						<div class="team-img">
+							<img class="img-responsive" src="{{ url_for('static',filename='img/team1.jpg') }}" alt="">
+							<div class="overlay">
+								<div class="team-social">
+									<a href="#"><i class="fa fa-facebook"></i></a>
+									<a href="#"><i class="fa fa-google-plus"></i></a>
+									<a href="#"><i class="fa fa-twitter"></i></a>
+								</div>
+							</div>
+						</div>
+						<div class="team-content">
+							<h3>Venkat Pushpak Gollamudi</h3>
+							<span>Software Engineer</span>
+						</div>
+					</div>
+				</div>
+				<!-- /team -->
+
+				<!-- team -->
+				<div class="col-sm-4">
+					<div class="team">
+						<div class="team-img">
+							<img class="img-responsive" src="{{ url_for('static',filename='img/team2.jpg') }}" alt="">
+							<div class="overlay">
+								<div class="team-social">
+									<a href="#"><i class="fa fa-facebook"></i></a>
+									<a href="#"><i class="fa fa-google-plus"></i></a>
+									<a href="#"><i class="fa fa-twitter"></i></a>
+								</div>
+							</div>
+						</div>
+						<div class="team-content">
+							<h3>Harshrajsinh Rathod</h3>
+							<span>Software Engineer</span>
+						</div>
+					</div>
+				</div>
+				<!-- /team -->
+
+			
+			</div>
+			<!-- /Row -->
+		</div>
+		<!-- /Container -->
+
+	</div>
+	<!-- /Team -->
+
+	
+
+
+
+	<!-- Footer -->
+	<footer id="footer" class="sm-padding bg-dark">
+
+		<!-- Container -->
+		<div class="container">
+
+			<!-- Row -->
+			<div class="row">
+
+				<div class="col-md-12">
+
+					<!-- footer logo -->
+					<div class="footer-logo">
+						<a href="index.html"><img src="{{ url_for('static',filename='img/logo-alt.png') }}" alt="logo"></a>
+					</div>
+					<!-- /footer logo -->
+
+					<!-- footer follow -->
+					<ul class="footer-follow">
+						<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+						<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+						<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+						<li><a href="#"><i class="fa fa-instagram"></i></a></li>
+						<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+						<li><a href="#"><i class="fa fa-youtube"></i></a></li>
+					</ul>
+					<!-- /footer follow -->
+
+					<!-- footer copyright -->
+					<div class="footer-copyright">
+						<p>Copyright © 2017. All Rights Reserved. Designed by <a href="https://colorlib.com" target="_blank">Colorlib</a></p>
+					</div>
+					<!-- /footer copyright -->
+
+				</div>
+
+			</div>
+			<!-- /Row -->
+
+		</div>
+		<!-- /Container -->
+
+	</footer>
+	<!-- /Footer -->
+
+	<!-- Back to top -->
+	<div id="back-to-top"></div>
+	<!-- /Back to top -->
+
+	<!-- Preloader -->
+	<div id="preloader">
+		<div class="preloader">
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+	</div>
+	<!-- /Preloader -->
+
+	<!-- jQuery Plugins -->
+	<script type="text/javascript" src="{{ url_for('static',filename='js/jquery.min.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static',filename='js/bootstrap.min.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static',filename='js/owl.carousel.min.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static',filename='js/jquery.magnific-popup.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static',filename='js/main.js') }}"></script>
+
+</body>
+
+</html>
