@@ -1,10 +1,11 @@
+import datetime
 import hashlib
 import json
-import requests
-
 from time import time
 from urllib.parse import urlparse
-from uuid import uuid4
+
+import requests
+
 
 class Blockchain:
     def __init__(self):
@@ -13,7 +14,7 @@ class Blockchain:
         self.nodes = set()
 
         # Create the genesis block
-        self.new_block(previous_hash='1', proof=100)
+        self.new_block(previous_hash='1', proof=100, content={})
 
     def register_node(self, address):
         """
@@ -87,21 +88,46 @@ class Blockchain:
 
         return False
 
-    def new_block(self, proof, previous_hash):
+    def new_block(self, proof, previous_hash, content):
         """
         Create a new Block in the Blockchain
         :param proof: The proof given by the Proof of Work algorithm
         :param previous_hash: Hash of previous Block
         :return: New Block
         """
+        if len(content):
+            product_id = content['product_id']
+            manufacturer = content['manufacturer'],
+            product_name = content['product_name'],
+            price = content['price'],
+            quantity = content['quantity']
 
-        block = {
-            'index': len(self.chain) + 1,
-            'timestamp': time(),
-            'transactions': self.current_transactions,
-            'proof': proof,
-            'previous_hash': previous_hash or self.hash(self.chain[-1]),
-        }
+            block = {
+                'index': len(self.chain) + 1,
+                'timestamp': time(),
+                'transactions': self.current_transactions,
+                'proof': proof,
+                'previous_hash': previous_hash or self.hash(self.chain[-1]),
+                'product_id': product_id,
+                'manufacturer': manufacturer,
+                'product_name': product_name,
+                'price': price,
+                'quantity': quantity
+            }
+        else:
+            # creating the genesis block
+            block = {
+                'index': 1,
+                'timestamp': time(),
+                'transactions': self.current_transactions,
+                'proof': proof,
+                'previous_hash': "085asad7ratte4131563",
+                'product_id': 0,
+                'manufacturer': 0,
+                'product_name': 0,
+                'price': 0,
+                'quantity': 0
+            }
 
         # Reset the current list of transactions
         self.current_transactions = []
@@ -109,24 +135,28 @@ class Blockchain:
         self.chain.append(block)
         return block
 
-    def new_transaction(self, sender, product_name, price, recipient, quantity, link):
-        """
-        Creates a new transaction to go into the next mined Block
-        :param sender: Address of the Sender
-        :param recipient: Address of the Recipient
-        :param amount: Amount
-        :return: The index of the Block that will hold this transaction
-        """
-        self.current_transactions.append({
-            'sender': sender,
-            'product_name': product_name,
-            'price': price,
-            'recipient': recipient,
-            'quantity': quantity,
-            'link': link
-        })
+    def new_transaction(self, old_owner, new_owner, id):
+        transaction = {
+            'transaction_id': hashlib.sha1(
+                old_owner.encode() + new_owner.encode() + str(datetime.datetime.now()).encode()).hexdigest(),
+            'old_owner': old_owner,
+            'new_owner': new_owner
+        }
 
-        return self.last_block['index'] + 1
+        # self.current_transactions.append(transaction)
+        new_block = []
+        for block in self.chain:
+            print(type(block['product_id']))
+            print(type(id))
+            if block['product_id'] == id:
+                block['transactions'].append(transaction)
+                new_block = block
+                break
+        else:
+            return "Not found"
+
+        return new_block
+        # return self.last_block['index'] + 1
 
     @property
     def last_block(self):

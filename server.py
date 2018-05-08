@@ -1,89 +1,118 @@
 from uuid import uuid4
-
 import requests
 from flask import Flask, jsonify, request, render_template
+
 from blockchain import Blockchain
+
 # Instantiate the Node
-app = Flask(__name__)
+app = Flask(__name__, template_folder='templates')
 
 # Generate a globally unique address for this node
 node_identifier = str(uuid4()).replace('-', '')
 
 # Instantiate the Blockchain
 blockchain = Blockchain()
-#blockchain.register_node('http://127.0.0.1/5001')
-#blockchain.register_node('http://127.0.0.1/5002')
-#blockchain.register_node('http://127.0.0.1/5003')
-#blockchain.register_node('http://127.0.0.1/5004')
-#blockchain.register_node('http://127.0.0.1/5005')
+
+
+# blockchain.register_node('http://127.0.0.1/5001')
+# blockchain.register_node('http://127.0.0.1/5002')
+# blockchain.register_node('http://127.0.0.1/5003')
+# blockchain.register_node('http://127.0.0.1/5004')
+# blockchain.register_node('http://127.0.0.1/5005')
 
 
 @app.route("/")
 def home():
-	return render_template('index.html')
+    return render_template('index.html')
+
 
 @app.route("/register", methods=['POST'])
 def register():
-	print(request.form)
-	#TODO: create block?
-	#TODO: make changes to frontend to acknowledge registration
-	return render_template('index.html')
+    print(request.form)
+    content = request.get_json()
+
+    # TODO: create block
+    last_block = blockchain.last_block
+    last_proof = last_block['proof']
+    proof = blockchain.proof_of_work(last_proof)
+    previous_hash = blockchain.hash(last_block)
+
+    # creating a block
+    block = blockchain.new_block(proof, previous_hash, content)
+
+    # TODO: make changes to frontend to acknowledge registration
+    return jsonify(block), 200
+    # return render_template('index.html')
+
 
 @app.route("/transfer", methods=['POST'])
 def transfer():
-	print(request.form)
-	#TODO: backend stuff
-	#TODO:make changes to html
-	return render_template('index.html')
+    print(request.form)
+    # TODO: backend stuff
+    # TODO:make changes to html
+    return render_template('index.html')
+
 
 @app.route('/mine', methods=['GET'])
 def mine():
     # We run the proof of work algorithm to get the next proof...
-    last_block = blockchain.last_block
-    last_proof = last_block['proof']
-    proof = blockchain.proof_of_work(last_proof)
+    # last_block = blockchain.last_block
+    # last_proof = last_block['proof']
+    # proof = blockchain.proof_of_work(last_proof)
+    #
+    # previous_hash = blockchain.hash(last_block)
+    # block = blockchain.new_block(proof, previous_hash)
 
     # We must receive a reward for finding the proof.
     # The sender is "0" to signify that this node has mined a new coin.
-    blockchain.new_transaction(
-        sender="0",
-        product_name = "0",
-        price = 0,
-        recipient=node_identifier,
-        quantity=1,
-        link = "empty"
-    )
+    # blockchain.new_transaction(
+    #     sender="0",
+    #     product_name="0",
+    #     price=0,
+    #     recipient=node_identifier,
+    #     quantity=1,
+    #     link="empty"
+    # )
+    #
+    # # Forge the new Block by adding it to the chain
+    # previous_hash = blockchain.hash(last_block)
+    # block = blockchain.new_block(proof, previous_hash)
+    #
+    # response = {
+    #     'message': "New Block Forged",
+    #     'index': block['index'],
+    #     'transactions': block['transactions'],
+    #     'proof': block['proof'],
+    #     'previous_hash': block['previous_hash'],
+    # }
+    response = requests.get(f'http://127.0.0.1:5001/chain')
+    print(response)
 
-    # Forge the new Block by adding it to the chain
-    previous_hash = blockchain.hash(last_block)
-    block = blockchain.new_block(proof, previous_hash)
-
-    response = {
-        'message': "New Block Forged",
-        'index': block['index'],
-        'transactions': block['transactions'],
-        'proof': block['proof'],
-        'previous_hash': block['previous_hash'],
-    }
-    return jsonify(response), 200
+    return jsonify(response.json()), 200
 
 
+# @app.route('/transactions/new', methods=['POST'])
+# def new_transaction():
+#     values = request.get_json()
+#
+#     # Check that the required fields are in the POST'ed data
+#     required = ['sender', 'product_name', 'price', 'recipient', 'quantity', 'link']
+#     if not all(k in values for k in required):
+#         return 'Missing values', 400
+#
+#     # Create a new Transaction
+#     index = blockchain.new_transaction(values['sender'], values['product_name'], values['price'],
+#                                        values['recipient'], values['quantity'], values['link'])
+#
+#     response = {'message': f'Transaction will be added to Block {index}'}
+#     return jsonify(response), 201
 
-@app.route('/transactions/new', methods=['POST'])
-def new_transaction():
+
+@app.route('/transactions/<id>', methods=['POST'])
+def new_transaction(id):
     values = request.get_json()
-
-    # Check that the required fields are in the POST'ed data
-    required = ['sender','product_name', 'price', 'recipient', 'quantity', 'link']
-    if not all(k in values for k in required):
-        return 'Missing values', 400
-
-    # Create a new Transaction
-    index = blockchain.new_transaction(values['sender'], values['product_name'], values['price'],
-        values['recipient'], values['quantity'], values['link'])
-
-    response = {'message': f'Transaction will be added to Block {index}'}
-    return jsonify(response), 201
+    block = blockchain.new_transaction(values['old_owner'], values['new_owner'], id)
+    return jsonify(block),200
 
 
 @app.route('/chain', methods=['GET'])
