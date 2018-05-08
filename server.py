@@ -30,7 +30,8 @@ def home():
 def register():
     print(request.form)
     content = request.get_json()
-
+    print("content")
+    print(content)
     # TODO: create block
     last_block = blockchain.last_block
     last_proof = last_block['proof']
@@ -122,6 +123,13 @@ def full_chain():
         'length': len(blockchain.chain),
     }
     return jsonify(response), 200
+
+@app.route('/transact/<id>', methods=['GET'])
+def new_action(id):
+    #data = requests.get(f'http://127.0.0.1:5001/chain')
+    response=blockchain.get_transaction(id)
+    return jsonify(response),200
+
 
 
 @app.route('/nodes/register', methods=['POST'])

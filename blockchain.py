@@ -158,6 +158,19 @@ class Blockchain:
         return new_block
         # return self.last_block['index'] + 1
 
+    def  get_transaction(self,id):
+
+       for block in self.chain:
+           for trans in block['transactions']:
+               if trans['transaction_id'] ==id:
+                   test=block['transactions']
+                   break
+
+               else:
+                   test="error"
+       return test
+
+
     @property
     def last_block(self):
         return self.chain[-1]
