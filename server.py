@@ -50,13 +50,14 @@ def register():
 
     # TODO: make changes to frontend to acknowledge registration
     # return jsonify(block), 200
-    return render_template('index.html')
+    return render_template('manufacturer.html')
 
 
 @app.route("/transfer", methods=['POST'])
 def transfer():
     global data
     node = {}
+    error = 0
     product_id = request.form['upc'].strip()
     if (data[product_id]):
         product_id = data[product_id]['product_id']
@@ -65,10 +66,10 @@ def transfer():
         blockchain.new_transaction(old_owner, new_owner, product_id)
     else:
         # product has not been registered
-        res = "err"
+        error = 1
         # return render_template('error.html')
     # TODO:make changes to html
-    return render_template('index.html')
+    return render_template('retailer.html')
 
 
 @app.route('/mine', methods=['GET'])

@@ -38,13 +38,13 @@
 
 <body>
 	<!-- Header -->
-	<header id="home">
+	<header>
 		<!-- Background Image -->
 		<div class="bg-img" style="background-image: url('static/img/baby.jpg');">
 			<div class="overlay"></div>
 		</div>
 		<!-- /Background Image -->
-
+		
 		<!-- Nav -->
 		<nav id="nav" class="navbar nav-transparent">
 			<div class="container">
@@ -52,7 +52,7 @@
 				<div class="navbar-header">
 					<!-- Logo -->
 					<div class="navbar-brand">
-						<a href="index.html">
+						<a href="/">
 							<img class="logo" src="{{ url_for('static',filename='img/logo.png') }}" alt="logo">
 							<img class="logo-alt" src="{{ url_for('static',filename='img/logo-alt.png') }}" alt="logo">
 						</a>
@@ -68,12 +68,12 @@
 
 				<!--  Main navigation  -->
 				<ul class="main-nav nav navbar-nav navbar-right">
-					<li><a href="#home">Home</a></li>
-					<li><a href="#manufacturer">Manufacturer</a></li>
-					<li><a href="#retailer">Retailer</a></li>
-					<li><a href="#transactions">Transactions</a></li>
-					<li><a href="#featured">Featured Items</a></li>
-					<li><a href="#team">Team</a></li>
+					<li><a href="/">Home</a></li>
+					<li><a href="/#manufacturer">Manufacturer</a></li>
+					<li><a href="/#retailer">Retailer</a></li>
+					<li><a href="/#transactions">Transactions</a></li>
+					<li><a href="/#featured">Featured Items</a></li>
+					<li><a href="/#team">Team</a></li>
 
 				</ul>
 				<!-- /Main navigation -->
@@ -86,7 +86,7 @@
 	<!-- /Header -->
 
 	<!-- About -->
-	<div id="manufacturer" class="section md-padding">
+	<div class="section md-padding">
 
 		<!-- Container -->
 		<div class="container">
@@ -106,7 +106,7 @@
 							<br>
 							
 						
-							<form action="{{url_for('register', _anchor='manufacturer')}}" method="post">
+							<form action="{{url_for('register')}}" method="post">
 								<fieldset>
 									<legend>Register your products:</legend>
 									Product Name:<br>
