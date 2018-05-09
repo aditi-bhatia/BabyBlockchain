@@ -62,11 +62,19 @@ class Blockchain:
         :return: True if our chain was replaced, False if not
         """
 
+
+        """
+            response = requests.get(f'http://127.0.0.1:5001/chain')
+    
+    print(response)
+    """
         neighbours = self.nodes
+        print(neighbours)
         new_chain = None
 
         # We're only looking for chains longer than ours
-        max_length = len(self.chain)
+        max_length = len(str(self.chain)) # + len(self.current_transactions)
+
 
         # Grab and verify the chains from all the nodes in our network
         for node in neighbours:
@@ -84,6 +92,8 @@ class Blockchain:
         # Replace our chain if we discovered a new, valid chain longer than ours
         if new_chain:
             self.chain = new_chain
+            print("NEW CHAIN")
+            print(self.chain)
             return True
 
         return False
@@ -170,6 +180,17 @@ class Blockchain:
                    test="error"
        return test
 
+    def  get_transaction_length(self):
+        x = 0
+        for block in self.chain:
+            for trans in block['transactions']:
+                x=x+1
+            else:
+                test="error"
+            print("GETTING TRANSACTION LENGTH")
+            print(x)
+            print("\n")
+            return x
 
     @property
     def last_block(self):

@@ -26,7 +26,7 @@ def home():
     return render_template('index.html')
 
 
-@app.route("/register", methods=['POST'])
+@app.route("/register", methods=['POST']) #mining the proof of work 
 def register():
     print(request.form)
     content = request.get_json()
@@ -56,16 +56,16 @@ def transfer():
 
 @app.route('/mine', methods=['GET'])
 def mine():
-    # We run the proof of work algorithm to get the next proof...
+    # #We run the proof of work algorithm to get the next proof...
     # last_block = blockchain.last_block
     # last_proof = last_block['proof']
     # proof = blockchain.proof_of_work(last_proof)
-    #
+    
     # previous_hash = blockchain.hash(last_block)
     # block = blockchain.new_block(proof, previous_hash)
 
-    # We must receive a reward for finding the proof.
-    # The sender is "0" to signify that this node has mined a new coin.
+    # #We must receive a reward for finding the proof.
+    # #The sender is "0" to signify that this node has mined a new coin.
     # blockchain.new_transaction(
     #     sender="0",
     #     product_name="0",
@@ -74,11 +74,11 @@ def mine():
     #     quantity=1,
     #     link="empty"
     # )
-    #
+    
     # # Forge the new Block by adding it to the chain
     # previous_hash = blockchain.hash(last_block)
     # block = blockchain.new_block(proof, previous_hash)
-    #
+    
     # response = {
     #     'message': "New Block Forged",
     #     'index': block['index'],
@@ -86,8 +86,9 @@ def mine():
     #     'proof': block['proof'],
     #     'previous_hash': block['previous_hash'],
     # }
-    response = requests.get(f'http://127.0.0.1:5001/chain')
-    print(response)
+    #response = requests.get(f'http://127.0.0.1:5001/chain')
+
+   # print(response)
 
     return jsonify(response.json()), 200
 
@@ -109,7 +110,7 @@ def mine():
 #     return jsonify(response), 201
 
 
-@app.route('/transactions/<id>', methods=['POST'])
+@app.route('/transactions/<id>', methods=['POST']) # adding a new block
 def new_transaction(id):
     values = request.get_json()
     block = blockchain.new_transaction(values['old_owner'], values['new_owner'], id)
@@ -120,7 +121,7 @@ def new_transaction(id):
 def full_chain():
     response = {
         'chain': blockchain.chain,
-        'length': len(blockchain.chain),
+        'length': len(str(blockchain.chain)) # + blockchain.get_transaction_length(), #aditi changed
     }
     return jsonify(response), 200
 
