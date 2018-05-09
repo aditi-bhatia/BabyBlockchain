@@ -52,7 +52,7 @@
 				<div class="navbar-header">
 					<!-- Logo -->
 					<div class="navbar-brand">
-						<a href="index.html">
+						<a href="/">
 							<img class="logo" src="{{ url_for('static',filename='img/logo.png') }}" alt="logo">
 							<img class="logo-alt" src="{{ url_for('static',filename='img/logo-alt.png') }}" alt="logo">
 						</a>
@@ -138,6 +138,8 @@
 							<form action="{{url_for('register', _anchor='manufacturer')}}" method="post">
 								<fieldset>
 									<legend>Register your products:</legend>
+									UPC Code:<br>
+									<input type="number" name="upc" value="" placeholder="042100005264" required="required"><br>
 									Product Name:<br>
 									<input type="text" name="product" value="" placeholder="Baby Sipper" required="required"><br>
 									Product Link:<br>
@@ -197,11 +199,11 @@
 							<br>
 
 						
-							<form action="{{url_for('transfer')}}", method="post">
+							<form action="{{url_for('transfer', _anchor='retailer')}}", method="post">
 								<fieldset>
 									<legend>Purchase/transfer products:</legend>
-									Product Name:<br>
-									<input type="text" name="product" value="" placeholder="Baby Shoes" required="required"><br>
+									UPC Code:<br>
+									<input type="number" name="upc" value="" placeholder="042100005264" required="required"><br>
 									Manufacturer (Sender) Name:<br>
 									<input type="text" name="sender" value="" placeholder="James Smith" required="required"><br>
 									Retailer (Recipient) Name:<br>

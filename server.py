@@ -25,21 +25,19 @@ blockchain = Blockchain()
 def home():
     return render_template('index.html')
 
-p_id = 0
 data = {}
 
 @app.route("/register", methods=['POST']) #mining the proof of work 
 def register():
-    global p_id, data
-    p_id += 1
+    global data
     node = {}
-    node['product_id'] = p_id
+    node['product_id'] = request.form['upc'].strip()
     node['product_name'] = request.form['product'].strip()
-    node['link'] = request.form['link']
-    node['quantity'] = request.form['quantity']
-    node['price'] = request.form['price']
-    node['manufacturer'] = request.form['seller']
-    data[node['product_name']] = node
+    node['link'] = request.form['link'].strip()
+    node['quantity'] = request.form['quantity'].strip()
+    node['price'] = request.form['price'].strip()
+    node['manufacturer'] = request.form['seller'].strip()
+    data[node['product_id']] = node
 
     # TODO: create block
     last_block = blockchain.last_block
@@ -52,7 +50,6 @@ def register():
 
     # TODO: make changes to frontend to acknowledge registration
     # return jsonify(block), 200
-    # return 'ok'
     return render_template('index.html')
 
 
@@ -60,15 +57,15 @@ def register():
 def transfer():
     global data
     node = {}
-    product_name = request.form['product'].strip()
-    if (data[product_name]):
-        product_id = data[product_name]['product_id']
+    product_id = request.form['upc'].strip()
+    if (data[product_id]):
+        product_id = data[product_id]['product_id']
         old_owner = request.form['sender']
         new_owner = request.form['recipient']
         blockchain.new_transaction(old_owner, new_owner, product_id)
-        res = "ok"
     else:
-        res = "node has not been registered"
+        # product has not been registered
+        res = "err"
         # return render_template('error.html')
     # TODO:make changes to html
     return render_template('index.html')
