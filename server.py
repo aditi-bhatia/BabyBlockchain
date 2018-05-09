@@ -25,13 +25,21 @@ blockchain = Blockchain()
 def home():
     return render_template('index.html')
 
+p_id = 0
 
 @app.route("/register", methods=['POST']) #mining the proof of work 
 def register():
     print(request.form)
-    content = request.get_json()
-    print("content")
-    print(content)
+    data = {}
+    global p_id
+    p_id += 1
+    data['product_id'] = p_id
+    data['product_name'] = request.form['product']
+    data['link'] = request.form['link']
+    data['quantity'] = request.form['quantity']
+    data['price'] = request.form['price']
+    data['manufacturer'] = request.form['seller']
+
     # TODO: create block
     last_block = blockchain.last_block
     last_proof = last_block['proof']
@@ -39,11 +47,12 @@ def register():
     previous_hash = blockchain.hash(last_block)
 
     # creating a block
-    block = blockchain.new_block(proof, previous_hash, content)
+    block = blockchain.new_block(proof, previous_hash, data)
 
     # TODO: make changes to frontend to acknowledge registration
-    return jsonify(block), 200
-    # return render_template('index.html')
+    # return jsonify(block), 200
+    # return 'ok'
+    return render_template('index.html')
 
 
 @app.route("/transfer", methods=['POST'])

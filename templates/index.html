@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-	<title>HTML Template</title>
+	<title>Baby Blockchain</title>
 
 	<!-- Google font -->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CVarela+Round" rel="stylesheet">
@@ -100,9 +100,6 @@
 							</p>
 							<button class="white-btn"><a href="#manufacturer">I am a manufacturer</a></button>
 							<button class="main-btn"><a href="#retailer">I am a retailer</a></button>
-							<form>
-
-
 
 							
 						</div>
@@ -138,7 +135,7 @@
 							<br>
 							
 						
-							<form action="{{url_for('register')}}" method="post">
+							<form action="{{url_for('register', _anchor='manufacturer')}}" method="post">
 								<fieldset>
 									<legend>Register your products:</legend>
 									Product Name:<br>
@@ -152,10 +149,12 @@
 									Manufacturer (Sender) Name:<br>
 									<input type="text" name="seller" value=" "><br><br>
 
-									<input type="submit" value="Submit">
+									<input type="submit" value="Register Product" onclick="toggle()">
 								</fieldset>
 							</form>
-
+							<!-- <div class="col-md-10 col-md-offset-1" style="width: 60%; height: 5%; visibility: hidden;" id="registered">
+								Product Registered
+							</div> -->
 
 							
 						</div>
@@ -602,7 +601,11 @@
 	<script type="text/javascript" src="{{ url_for('static',filename='js/owl.carousel.min.js') }}"></script>
 	<script type="text/javascript" src="{{ url_for('static',filename='js/jquery.magnific-popup.js') }}"></script>
 	<script type="text/javascript" src="{{ url_for('static',filename='js/main.js') }}"></script>
-
+	<script>
+		// function toggle(){
+		// 	document.getElementById( "registered" ).style.visibility='visible'
+		// }
+	</script>
 </body>
 
 </html>
