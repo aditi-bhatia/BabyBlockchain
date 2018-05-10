@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-	<title>HTML Template</title>
+	<title>Baby Blockchain</title>
 
 	<!-- Google font -->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CVarela+Round" rel="stylesheet">
@@ -52,7 +52,7 @@
 				<div class="navbar-header">
 					<!-- Logo -->
 					<div class="navbar-brand">
-						<a href="index.html">
+						<a href="/">
 							<img class="logo" src="{{ url_for('static',filename='img/logo.png') }}" alt="logo">
 							<img class="logo-alt" src="{{ url_for('static',filename='img/logo-alt.png') }}" alt="logo">
 						</a>
@@ -100,9 +100,6 @@
 							</p>
 							<button class="white-btn"><a href="#manufacturer">I am a manufacturer</a></button>
 							<button class="main-btn"><a href="#retailer">I am a retailer</a></button>
-							<form>
-
-
 
 							
 						</div>
@@ -141,21 +138,25 @@
 							<form action="{{url_for('register')}}" method="post">
 								<fieldset>
 									<legend>Register your products:</legend>
+									UPC Code:<br>
+									<input type="number" name="upc" value="" placeholder="042100005264" required="required"><br>
 									Product Name:<br>
-									<input type="text" name="product" value=" "><br>
+									<input type="text" name="product" value="" placeholder="Baby Sipper" required="required"><br>
 									Product Link:<br>
-									<input type="text" name="link" value=" "><br>
+									<input type="text" name="link" value="" placeholder="https://www.amazon.com/Nuby-No-Spill/B013FWA5BS" required="required"><br>
 									Quantity:<br>
-									<input type="text" name="quantity" value=" "><br>
+									<input type="number" name="quantity" value="" placeholder="3" required="required"><br>
 									Price per unit:<br>
-									<input type="text" name="price" value=" "><br>
+									<input type="number" name="price" value="" placeholder="In USD" required="required"><br>
 									Manufacturer (Sender) Name:<br>
-									<input type="text" name="seller" value=" "><br><br>
+									<input type="text" name="seller" value="" placeholder="John Doe" required="required"><br><br>
 
-									<input type="submit" value="Submit">
+									<input type="submit" value="Register Product" onclick="toggle()">
 								</fieldset>
 							</form>
-
+							<!-- <div class="col-md-10 col-md-offset-1" style="width: 60%; height: 5%; visibility: hidden;" id="registered">
+								Product Registered
+							</div> -->
 
 							
 						</div>
@@ -201,14 +202,14 @@
 							<form action="{{url_for('transfer')}}", method="post">
 								<fieldset>
 									<legend>Purchase/transfer products:</legend>
-									Product Name:<br>
-									<input type="text" name="product" value=" "><br>
+									UPC Code:<br>
+									<input type="number" name="upc" value="" placeholder="042100005264" required="required"><br>
 									Manufacturer (Sender) Name:<br>
-									<input type="text" name="sender" value=" "><br>
+									<input type="text" name="sender" value="" placeholder="James Smith" required="required"><br>
 									Retailer (Recipient) Name:<br>
-									<input type="text" name="recipient" value=" "><br>
+									<input type="text" name="recipient" value="" placeholder="Maria Rodriguez" required="required"><br>
 									Quantity:<br>
-									<input type="text" name="quantity" value=" "><br><br>
+									<input type="number" name="quantity" value="" placeholder="5" required="required"><br><br>
 									<input type="submit" value="Submit">
 								</fieldset>
 							</form>
@@ -417,7 +418,7 @@
 				<div class="col-sm-4">
 					<div class="team">
 						<div class="team-img">
-							<img class="img-responsive" src="{{ url_for('static',filename='img/headshots/aditi.png') }}" alt="">
+							<img class="img-responsive" src="{{ url_for('static',filename='img/headshots/aditi.jpg') }}" alt="">
 							<div class="overlay">
 								<div class="team-social">
 									<a href="#"><i class="fa fa-facebook"></i></a>
@@ -438,7 +439,7 @@
 				<div class="col-sm-4">
 					<div class="team">
 						<div class="team-img">
-							<img class="img-responsive" src="{{ url_for('static',filename='img/team2.jpg') }}" alt="">
+							<img class="img-responsive" src="{{ url_for('static',filename='img/headshots/aravindh.jpeg') }}" alt="">
 							<div class="overlay">
 								<div class="team-social">
 									<a href="#"><i class="fa fa-facebook"></i></a>
@@ -485,7 +486,7 @@
 				<div class="col-sm-4">
 					<div class="team">
 						<div class="team-img">
-							<img class="img-responsive" src="{{ url_for('static',filename='img/team1.jpg') }}" alt="">
+							<img class="img-responsive" src="{{ url_for('static',filename='img/headshots/venkat.jpg') }}" alt="">
 							<div class="overlay">
 								<div class="team-social">
 									<a href="#"><i class="fa fa-facebook"></i></a>
@@ -506,7 +507,7 @@
 				<div class="col-sm-4">
 					<div class="team">
 						<div class="team-img">
-							<img class="img-responsive" src="{{ url_for('static',filename='img/team2.jpg') }}" alt="">
+							<img class="img-responsive" src="{{ url_for('static',filename='img/headshots/harsh.JPG') }}" alt="">
 							<div class="overlay">
 								<div class="team-social">
 									<a href="#"><i class="fa fa-facebook"></i></a>
@@ -564,12 +565,6 @@
 					</ul>
 					<!-- /footer follow -->
 
-					<!-- footer copyright -->
-					<div class="footer-copyright">
-						<p>Copyright © 2017. All Rights Reserved. Designed by <a href="https://colorlib.com" target="_blank">Colorlib</a></p>
-					</div>
-					<!-- /footer copyright -->
-
 				</div>
 
 			</div>
@@ -602,7 +597,11 @@
 	<script type="text/javascript" src="{{ url_for('static',filename='js/owl.carousel.min.js') }}"></script>
 	<script type="text/javascript" src="{{ url_for('static',filename='js/jquery.magnific-popup.js') }}"></script>
 	<script type="text/javascript" src="{{ url_for('static',filename='js/main.js') }}"></script>
-
+	<script>
+		// function toggle(){
+		// 	document.getElementById( "registered" ).style.visibility='visible'
+		// }
+	</script>
 </body>
 
 </html>

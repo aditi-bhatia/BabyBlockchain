@@ -25,13 +25,20 @@ blockchain = Blockchain()
 def home():
     return render_template('index.html')
 
+data = {}
 
-@app.route("/register", methods=['POST'])
+@app.route("/register", methods=['POST']) #mining the proof of work
 def register():
-    print(request.form)
-    content = request.get_json()
-    print("content")
-    print(content)
+    global data
+    node = {}
+    node['product_id'] = request.form['upc'].strip()
+    node['product_name'] = request.form['product'].strip()
+    node['link'] = request.form['link'].strip()
+    node['quantity'] = request.form['quantity'].strip()
+    node['price'] = request.form['price'].strip()
+    node['manufacturer'] = request.form['seller'].strip()
+    data[node['product_id']] = node
+
     # TODO: create block
     last_block = blockchain.last_block
     last_proof = last_block['proof']
@@ -39,33 +46,44 @@ def register():
     previous_hash = blockchain.hash(last_block)
 
     # creating a block
-    block = blockchain.new_block(proof, previous_hash, content)
+    block = blockchain.new_block(proof, previous_hash, node)
 
     # TODO: make changes to frontend to acknowledge registration
-    return jsonify(block), 200
-    # return render_template('index.html')
+    # return jsonify(block), 200
+    return render_template('manufacturer.html')
 
 
 @app.route("/transfer", methods=['POST'])
 def transfer():
-    print(request.form)
-    # TODO: backend stuff
+    global data
+    node = {}
+    error = 0
+    product_id = request.form['upc'].strip()
+    if (data[product_id]):
+        product_id = data[product_id]['product_id']
+        old_owner = request.form['sender']
+        new_owner = request.form['recipient']
+        blockchain.new_transaction(old_owner, new_owner, product_id)
+    else:
+        # product has not been registered
+        error = 1
+        # return render_template('error.html')
     # TODO:make changes to html
-    return render_template('index.html')
+    return render_template('retailer.html')
 
 
 @app.route('/mine', methods=['GET'])
 def mine():
-    # We run the proof of work algorithm to get the next proof...
+    # #We run the proof of work algorithm to get the next proof...
     # last_block = blockchain.last_block
     # last_proof = last_block['proof']
     # proof = blockchain.proof_of_work(last_proof)
-    #
+
     # previous_hash = blockchain.hash(last_block)
     # block = blockchain.new_block(proof, previous_hash)
 
-    # We must receive a reward for finding the proof.
-    # The sender is "0" to signify that this node has mined a new coin.
+    # #We must receive a reward for finding the proof.
+    # #The sender is "0" to signify that this node has mined a new coin.
     # blockchain.new_transaction(
     #     sender="0",
     #     product_name="0",
@@ -74,11 +92,11 @@ def mine():
     #     quantity=1,
     #     link="empty"
     # )
-    #
+
     # # Forge the new Block by adding it to the chain
     # previous_hash = blockchain.hash(last_block)
     # block = blockchain.new_block(proof, previous_hash)
-    #
+
     # response = {
     #     'message': "New Block Forged",
     #     'index': block['index'],
@@ -86,8 +104,6 @@ def mine():
     #     'proof': block['proof'],
     #     'previous_hash': block['previous_hash'],
     # }
-    print("blockchain for 5002")
-    print(blockchain.chain)
     response = requests.get(f'http://127.0.0.1:5001/chain')
     print(response)
 
@@ -111,7 +127,7 @@ def mine():
 #     return jsonify(response), 201
 
 
-@app.route('/transactions/<id>', methods=['POST'])
+@app.route('/transactions/<id>', methods=['POST']) # adding a new block
 def new_transaction(id):
     values = request.get_json()
     block = blockchain.new_transaction(values['old_owner'], values['new_owner'], id)
@@ -122,7 +138,7 @@ def new_transaction(id):
 def full_chain():
     response = {
         'chain': blockchain.chain,
-        'length': len(blockchain.chain),
+        'length': len(str(blockchain.chain)) # + blockchain.get_transaction_length(), #aditi changed
     }
     return jsonify(response), 200
 

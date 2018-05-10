@@ -1,0 +1,52 @@
+#Reference: https://stackoverflow.com/questions/40413048/creating-html-table-from-json-data
+
+var dataObj = {
+    "1": [{
+            "A": "",
+            "B": "",
+            "C": "",
+            "D": "",
+            "E": ""
+        },
+        {
+            "F": "",
+            "G": "",
+            "H": "",
+            "I": "",
+            "J": ""
+        },
+        {
+            "K": "",
+            "L": "",
+            "M": "",
+            "N": "",
+            "O": ""
+        }
+    ]};
+
+var dictionaryData = dataObj["1"];
+
+for (var i in dictionaryData) {
+  var table = document.getElementById("apps");
+  var tr = document.createElement("tr");
+  var td = document.createElement("td");
+  
+  for (var key in dictionaryData[i]) {
+    var txt = document.createTextNode(key);
+    td.appendChild(txt);
+    tr.appendChild(td);
+  }
+  table.appendChild(tr);
+}
+
+-----------------------------------------------------------------------
+
+table, td {
+    border: 1px solid black;
+}
+
+-----------------------------------------------------------------------
+
+<div>
+    <table id="apps"></table>
+</div>
