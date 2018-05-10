@@ -72,7 +72,6 @@
                         <li><a href="/#transactions">Transactions</a></li>
                         <li><a href="/#featured">Featured Items</a></li>
                         <li><a href="/#team">Team</a></li>
-    
                     </ul>
                     <!-- /Main navigation -->
     
@@ -81,7 +80,26 @@
             <!-- /Nav -->
     
         </header>
-        
+        <!-- {{data}} -->
+        <div id="result" style="height: 100px;">
+            <table style="display: table; width: 100%"><tr>
+                    <th>UPC Code</th>
+                    <th>From</th>
+                    <th>To</th>
+                </tr>
+            
+            <!-- {{data}} -->
+            {% for dt in data %}
+            <tr>
+                    <!-- <td>{{dt}}</td> -->
+                    <td width="30%">{{ dt['product_id'] }}</td>
+                    <td width="30%">{{ dt['old_owner'] }}</td>
+                    <td width="30%">{{ dt['new_owner'] }}</td>
+            </tr>
+            {% endfor %}
+            <!-- JSON. -->
+            </table>
+        </div>
 
 
 	<!-- Footer -->
@@ -120,5 +138,11 @@
             <!-- /Container -->
     
     </footer>
+    <script type = "text/javascript">
+    function fmt(data){
+        var temp = JSON.stringify(data)
+        document.getElementById("result").innerHTML = temp
+    }
+        </script>
 </body>
 </html>    
