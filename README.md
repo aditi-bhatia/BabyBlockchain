@@ -11,18 +11,6 @@ Aravindhan	Elayakumar
 
 Akinfemi	Akin-Aluko
 
-## TO DO LIST
-
--> UI should be able to GET and POST all requests, responses and data (use the updated UI code I pushed -aditi)  <br /> <br />
--> UI needs to be able to display all transactions like this: https://etherscan.io/txs   <br /> <br />
--> Code for transfering items from manufacturer -> retailer needs to be written <br /> <br />
--> FLASK API for all requests needs to be written: <br /> <br />
---->GET by product_id <br /> 
---->GET all products by a specific manufacturer <br /> 
---->Transfer products [POST new transactions for retailer manufacturer ->] <br /> 
---->manufacturer->retailer [GET updated retailer wallet] <br /> 
---->Etc. there are probably some that I am forgetting <br />
-
 ## How to run
 #### Start nodes
 ```js
