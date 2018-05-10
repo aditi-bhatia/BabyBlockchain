@@ -77,8 +77,9 @@ Checks to see that the original owner actually has the product or not. Also chec
 curl -i -X GET http://127.0.0.1:5001/transfer
 
 {
-	"old_owner": "a", 
-	"new_owner": "c"
+	"upc": 123123,
+	"old_owner": "Aditi", 
+	"new_owner": "Femi"
 }
 
 ```
