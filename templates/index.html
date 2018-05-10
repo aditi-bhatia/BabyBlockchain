@@ -133,9 +133,12 @@
 				<div class="col-md-10 col-md-offset-1">
 						<div class="manufacturer">
 							<br>
-							
-						
-							<form action="{{url_for('register')}}" method="post">
+							{% if data %}
+								<div class="alert alert-success">
+										<strong>Success!</strong> Product successfully registered
+								</div>
+							{%endif%}
+							<form action="{{url_for('register', _anchor='manufacturer')}}" method="post">
 								<fieldset>
 									<legend>Register your products:</legend>
 									UPC Code:<br>
@@ -189,7 +192,7 @@
 
 				<!-- Section header -->
 				<div class="section-header text-center">
-					<h2 class="title">Welcome, Retailer!</h2>
+					<h2 class="title">Sell Product</h2>
 				</div>
 				<!-- /Section header -->
 
@@ -199,9 +202,9 @@
 							<br>
 
 						
-							<form action="{{url_for('transfer')}}", method="post">
+							<form action="{{url_for('transfer', _anchor='retailer')}}", method="post">
 								<fieldset>
-									<legend>Purchase/transfer products:</legend>
+									<legend>Transfer products:</legend>
 									UPC Code:<br>
 									<input type="number" name="upc" value="" placeholder="042100005264" required="required"><br>
 									Manufacturer (Sender) Name:<br>
@@ -250,25 +253,27 @@
 				<!-- why choose us content -->
 				<div class="col-md-6">
 					<div class="section-header">
-						<h2 class="title">List of Transactions: TO DO</h2>
+						<h2 class="title">List of Transactions:</h2>
 					</div>
-					<p>Molestie at elementum eu facilisis sed odio. Scelerisque in dictum non consectetur a erat. Aliquam id diam maecenas ultricies mi eget mauris. Ultrices sagittis orci a scelerisque purus.</p>
-					<div class="feature">
-						<i class="fa fa-check"></i>
-						<p>Quis varius quam quisque id diam vel quam elementum.</p>
-					</div>
-					<div class="feature">
-						<i class="fa fa-check"></i>
-						<p>Mauris augue neque gravida in fermentum.</p>
-					</div>
-					<div class="feature">
-						<i class="fa fa-check"></i>
-						<p>Orci phasellus egestas tellus rutrum.</p>
-					</div>
-					<div class="feature">
-						<i class="fa fa-check"></i>
-						<p>Nec feugiat nisl pretium fusce id velit ut tortor pretium.</p>
-					</div>
+					<div class="container" id="result" style="height: 100px;">
+							<table class="table table-striped"  style="display: table; width: 100%">
+								<tr>
+									<th>Txn Hash</th>
+									<th>From</th>
+									<th>To</th>
+								</tr>
+							
+							<!-- {{data}} -->
+							{% for dt in data %}
+							<tr>
+								<!-- <td>{{dt}}</td> -->
+								<td width="30%">{{ dt['transaction_id'] }}</td>
+								<td width="30%">{{ dt['old_owner'] }}</td>
+								<td width="30%">{{ dt['new_owner'] }}</td>
+							</tr>
+							{% endfor %}
+							</table>
+						</div>
 				</div>
 				<!-- /why choose us content -->
 

@@ -64,7 +64,7 @@ def register():
     if request.headers['Content-Type'] == 'application/json':
         return jsonify(block), 200
     else:
-        return render_template('manufacturer.html')
+        return render_template('index.html', data=getAllTransaction())
 
 
 @app.route("/transfer", methods=['POST'])
@@ -91,7 +91,7 @@ def transfer():
                     old_owner = request.form['sender']
                     new_owner = request.form['recipient']
                     blockchain.new_transaction(old_owner, new_owner, product_id)
-                    return render_template('retailer.html')
+                    return render_template('index.html', data=getAllTransaction())
 
                 else:
                     return jsonify({"message":"enter a valid manufacturer"}), 400
@@ -103,7 +103,7 @@ def transfer():
                     old_owner = request.form['sender']
                     new_owner = request.form['recipient']
                     blockchain.new_transaction(old_owner, new_owner, product_id)
-                    return render_template('retailer.html')
+                    return render_template('index.html', data=getAllTransaction())
                 else:
                     print("b trans")
                     print( b['transactions'])
@@ -188,7 +188,7 @@ Added the api for getting all transactions
 '''
 
 
-@app.route('/getAllTransactions', methods=['GET'])
+# @app.route('/getAllTransactions', methods=['GET'])
 def getAllTransaction():
     transaction = []
     chain = blockchain.chain
