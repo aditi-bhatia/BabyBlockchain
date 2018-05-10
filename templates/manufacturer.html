@@ -86,7 +86,7 @@
 	<!-- /Header -->
 
 	<!-- About -->
-	<div class="section md-padding">
+	<div id="manufacturer" class="section md-padding">
 
 		<!-- Container -->
 		<div class="container">
@@ -109,6 +109,8 @@
 							<form action="{{url_for('register')}}" method="post">
 								<fieldset>
 									<legend>Register your products:</legend>
+									UPC Code:<br>
+									<input type="number" name="upc" value="" placeholder="042100005264" required="required"><br>
 									Product Name:<br>
 									<input type="text" name="product" value="" placeholder="Baby Sipper" required="required"><br>
 									Product Link:<br>

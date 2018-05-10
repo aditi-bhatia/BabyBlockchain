@@ -85,7 +85,7 @@
 	</header>
 	<!-- /Header -->
 
-<div id="retailer" class="section md-padding">
+	<div id="retailer" class="section md-padding">
 
 		<!-- Container -->
 		<div class="container">
@@ -108,8 +108,8 @@
 							<form action="{{url_for('transfer')}}", method="post">
 								<fieldset>
 									<legend>Purchase/transfer products:</legend>
-									Product Name:<br>
-									<input type="text" name="product" value="" placeholder="Baby Shoes" required="required"><br>
+									UPC Code:<br>
+									<input type="number" name="upc" value="" placeholder="042100005264" required="required"><br>
 									Manufacturer (Sender) Name:<br>
 									<input type="text" name="sender" value="" placeholder="James Smith" required="required"><br>
 									Retailer (Recipient) Name:<br>
