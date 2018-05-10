@@ -72,18 +72,53 @@ def transfer():
     global data
     node = {}
     error = 0
+    block=blockchain.chain
+    print("block")
+    print(block)
     product_id = request.form['upc'].strip()
-    if (data[product_id]):
-        product_id = data[product_id]['product_id']
-        old_owner = request.form['sender']
-        new_owner = request.form['recipient']
-        blockchain.new_transaction(old_owner, new_owner, product_id)
+    print("product id from block")
+    #print(type(b['product_id']))
+    print("product id from form")
+    print(type(product_id))
+    for b in block:
+        if (b['product_id']==product_id):
+            if len(b['transactions']) ==0:
+                # print("manufac")
+                # print(type(b['manufacturer']))
+                # print(request.form['sender'])
+                if b['manufacturer'][0]==request.form['sender']:
+                    product_id = b['product_id']
+                    old_owner = request.form['sender']
+                    new_owner = request.form['recipient']
+                    blockchain.new_transaction(old_owner, new_owner, product_id)
+                    return render_template('retailer.html')
+
+                else:
+                    return jsonify({"message":"enter a valid manufacturer"}), 400
+
+            else:
+
+                if b['transactions'][-1]["new_owner"]==request.form['sender']:
+                    product_id = b['product_id']
+                    old_owner = request.form['sender']
+                    new_owner = request.form['recipient']
+                    blockchain.new_transaction(old_owner, new_owner, product_id)
+                    return render_template('retailer.html')
+                else:
+                    print("b trans")
+                    print( b['transactions'])
+                    print("form")
+                    request.form['sender']
+                    return jsonify({"message": "enter a valid retailer"}), 400
+
+
     else:
-        # product has not been registered
-        error = 1
-        # return render_template('error.html')
+            return jsonify({"message": "enter a valid product"}), 400
+        # # product has not been registered
+        # error = 1
+        # # return render_template('error.html')
     # TODO:make changes to html
-    return render_template('retailer.html')
+    # return render_template('retailer.html')
 
 
 @app.route('/mine', methods=['GET'])
