@@ -72,6 +72,7 @@ curl -i -X GET http://127.0.0.1:5001/nodes/resolve
 Run on all nodes that have not been updated.
 
 #### Transfer ownership of a product : UPDATE THIS JSON
+Checks to see that the original owner actually has the product or not. Also checks to see if a product exists with that ID.
 ```js
 curl -i -X GET http://127.0.0.1:5001/transfer
 
@@ -92,7 +93,8 @@ curl -i -X GET http://127.0.0.1:5001/chain
 curl -i -X GET http://127.0.0.1:5001/transaction/<transaction_ID>
 ```
 
-#### Get a specific product with transaction ID (returns block that contains the product)
+#### Get a specific product with product ID (returns block that contains the product)
+Returns an error statement if a product with that ID does not exist.
 ```js
 curl -i -X GET http://127.0.0.1:5001/product/<product_ID>
 ```
