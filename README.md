@@ -65,7 +65,7 @@ To replicate all new changes (such as the ones made on 5001) on node 5002:
 ```js
 curl -i -X GET http://127.0.0.1:5002/nodes/resolve
 ```
-To replicate all new changes (such as the ones made on 5002) on node 500:
+To replicate all new changes (such as the ones made on 5002) on node 5001:
 ```js
 curl -i -X GET http://127.0.0.1:5001/nodes/resolve
 ```
