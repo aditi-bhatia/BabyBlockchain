@@ -11,13 +11,13 @@ Aravindhan	Elayakumar
 
 Akinfemi	Akin-Aluko
 ## Technology used
--> Flask
--> Python3
--> Merkle Trees (tools)
--> HTML/CSS/Javascript/Bootstrap
--> Consensus algorithm
--> Replication
--> Proof of Work
+-> Flask <br>
+-> Python3 <br>
+-> Merkle Trees (tools) <br>
+-> HTML/CSS/Javascript/Bootstrap <br>
+-> Consensus algorithm <br>
+-> Replication <br>
+-> Proof of Work<br>
 
 ## How to run
 #### Start nodes
