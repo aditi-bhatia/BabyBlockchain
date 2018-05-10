@@ -1,5 +1,5 @@
 from uuid import uuid4
-import requests
+
 from flask import Flask, jsonify, request, render_template
 
 from blockchain import Blockchain
@@ -63,7 +63,8 @@ def register():
     # TODO: make changes to frontend to acknowledge registration
     if request.headers['Content-Type'] == 'application/json':
         return jsonify(block), 200
-    return render_template('manufacturer.html')
+    else:
+        return render_template('manufacturer.html')
 
 
 @app.route("/transfer", methods=['POST'])
@@ -145,6 +146,25 @@ def new_transaction(id):
     values = request.get_json()
     block = blockchain.new_transaction(values['old_owner'], values['new_owner'], id)
     return jsonify(block),200
+
+
+'''
+Added the api for getting all transactions
+'''
+
+
+@app.route('/getAllTransactions', methods=['GET'])
+def getAllTransaction():
+    transaction = []
+    chain = blockchain.chain
+    for block in chain:
+        for t in block['transactions']:
+            transaction.append(t)
+    return jsonify(transaction), 200
+
+
+
+
 
 
 @app.route('/chain', methods=['GET'])
