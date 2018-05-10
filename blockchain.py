@@ -245,8 +245,14 @@ class Blockchain:
         :param proof: Current Proof
         :return: True if correct, False if not.
         """
-        if (mt.get_leaf_count() > 2):
-            print (mt.validate_proof(mt.get_proof(1), mt.get_leaf(1), mt.get_merkle_root()))
-        guess = f'{last_proof}{proof}'.encode()
-        guess_hash = hashlib.sha256(guess).hexdigest()
-        return guess_hash[:4] == "0000"
+        bl = False
+        try: 
+            if (mt.get_leaf_count() > 2):
+                bl = mt.validate_proof(mt.get_proof(1), mt.get_leaf(1), mt.get_merkle_root())
+        except: 
+            pass
+        if bl == False:
+            guess = f'{last_proof}{proof}'.encode()
+            guess_hash = hashlib.sha256(guess).hexdigest()
+            return guess_hash[:4] == "0000"
+        return bl
