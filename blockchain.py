@@ -3,8 +3,11 @@ import hashlib
 import json
 from time import time
 from urllib.parse import urlparse
-
 import requests
+
+from merkletools import MerkleTools
+
+mt = MerkleTools()
 
 
 class Blockchain:
@@ -15,6 +18,10 @@ class Blockchain:
 
         # Create the genesis block
         self.new_block(previous_hash='1', proof=100, content={})
+
+
+    def __str__(self):
+        return "%s" % (self.current_transactions)
 
     def register_node(self, address):
         """
@@ -143,6 +150,9 @@ class Blockchain:
         self.current_transactions = []
 
         self.chain.append(block)
+        mt.add_leaf(str(block), True)
+        mt.make_tree()
+
         return block
 
     def new_transaction(self, old_owner, new_owner, id):  # id is product id
@@ -235,7 +245,8 @@ class Blockchain:
         :param proof: Current Proof
         :return: True if correct, False if not.
         """
-
+        if (mt.get_leaf_count() > 2):
+            print (mt.validate_proof(mt.get_proof(1), mt.get_leaf(1), mt.get_merkle_root()))
         guess = f'{last_proof}{proof}'.encode()
         guess_hash = hashlib.sha256(guess).hexdigest()
         return guess_hash[:4] == "0000"
