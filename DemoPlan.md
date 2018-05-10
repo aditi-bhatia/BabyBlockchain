@@ -43,7 +43,7 @@ POST http://localhost:5004/nodes/register
 
 ```
 
-# Register all nodes: Front End
+# Register all products: Front End
 ```js
 upc: B07CRZWXQD
 product: MEGNYA Leather Baby Moccasins
@@ -62,4 +62,40 @@ manufacturer: MEGNYA
 
 
 ```
+
+# Check to see a product with product ID
+```js
+http://127.0.0.1:5001/product/B07CRZWXQD
+
+```
+
+# Transfer a product from one owner to another
+```js
+upc: B07CRZWXQD
+old_owner: MEGNYA
+new_owner: Aditi
+```
+
+# Get transaction block by transaction 
+```js
+http://127.0.0.1:5001/transaction/3cc33f7e1a07784de4912c8dd702c4ddc6914051
+```
+
+# Replication on all nodes
+```js
+http://127.0.0.1:5002/nodes/resolve
+http://127.0.0.1:5003/nodes/resolve
+http://127.0.0.1:5004/nodes/resolve
+```
+
+# View full chain with all products on all nodes (check replication)
+```js
+http://127.0.0.1:5001/chain
+http://127.0.0.1:5002/chain
+http://127.0.0.1:5003/chain
+http://127.0.0.1:5004/chain
+```
+
+
+
 
