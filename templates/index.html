@@ -133,16 +133,11 @@
 				<div class="col-md-10 col-md-offset-1">
 						<div class="manufacturer">
 							<br>
-							{% if data %}
-								<div class="alert alert-success">
-										<strong>Success!</strong> Product successfully registered
-								</div>
-							{%endif%}
 							<form action="{{url_for('register', _anchor='manufacturer')}}" method="post">
 								<fieldset>
 									<legend>Register your products:</legend>
 									UPC Code:<br>
-									<input type="number" name="upc" value="" placeholder="042100005264" required="required"><br>
+									<input type="text" name="upc" value="" placeholder="042100005264" required="required"><br>
 									Product Name:<br>
 									<input type="text" name="product" value="" placeholder="Baby Sipper" required="required"><br>
 									Product Link:<br>
@@ -206,7 +201,7 @@
 								<fieldset>
 									<legend>Transfer products:</legend>
 									UPC Code:<br>
-									<input type="number" name="upc" value="" placeholder="042100005264" required="required"><br>
+									<input type="text" name="upc" value="" placeholder="042100005264" required="required"><br>
 									Manufacturer (Sender) Name:<br>
 									<input type="text" name="sender" value="" placeholder="James Smith" required="required"><br>
 									Retailer (Recipient) Name:<br>
