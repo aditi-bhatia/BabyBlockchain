@@ -28,7 +28,7 @@ def home():
 
 @app.route("/txn")
 def txn():
-    return render_template('transactions.html', data=data)
+    return render_template('transactions.html', data=getAllTransaction())
 
 @app.route("/register", methods=['POST']) #mining the proof of work
 def register():
@@ -184,7 +184,7 @@ def new_transaction(id):
 
 
 '''
-Added the api for getting all transactions
+Added the api for getting all transactions 
 '''
 
 
@@ -195,7 +195,7 @@ def getAllTransaction():
     for block in chain:
         for t in block['transactions']:
             transaction.append(t)
-    return jsonify(transaction), 200
+    return transaction
 
 
 
