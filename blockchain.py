@@ -145,7 +145,7 @@ class Blockchain:
         self.chain.append(block)
         return block
 
-    def new_transaction(self, old_owner, new_owner, id):
+    def new_transaction(self, old_owner, new_owner, id):  # id is product id
         transaction = {
             'transaction_id': hashlib.sha1(
                 old_owner.encode() + new_owner.encode() + str(datetime.datetime.now()).encode()).hexdigest(),
@@ -168,16 +168,23 @@ class Blockchain:
         return new_block
         # return self.last_block['index'] + 1
 
-    def  get_transaction(self,id):
-
+    def  get_transaction(self,id): # id is transaction id
        for block in self.chain:
            for trans in block['transactions']:
                if trans['transaction_id'] ==id:
                    test=block['transactions']
                    break
-
                else:
                    test="error"
+       return test
+
+    def  get_block(self,id): # id is block id
+       for block in self.chain:
+            if (block['product_id'] == id):
+                test = block
+                break
+            else:
+                test="error"
        return test
 
     def  get_transaction_length(self):
