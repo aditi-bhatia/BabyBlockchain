@@ -20,12 +20,15 @@ blockchain = Blockchain()
 # blockchain.register_node('http://127.0.0.1/5004')
 # blockchain.register_node('http://127.0.0.1/5005')
 
+data = {}
 
 @app.route("/")
 def home():
     return render_template('index.html')
 
-data = {}
+@app.route("/txn")
+def txn():
+    return render_template('transactions.html', data=data)
 
 @app.route("/register", methods=['POST']) #mining the proof of work 
 def register():
