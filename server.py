@@ -86,6 +86,8 @@ def mine():
     #     'proof': block['proof'],
     #     'previous_hash': block['previous_hash'],
     # }
+    print("blockchain for 5002")
+    print(blockchain.chain)
     response = requests.get(f'http://127.0.0.1:5001/chain')
     print(response)
 
