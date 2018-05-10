@@ -1,5 +1,5 @@
 from uuid import uuid4
-import requests
+
 from flask import Flask, jsonify, request, render_template
 
 from blockchain import Blockchain
@@ -30,7 +30,7 @@ def home():
 def txn():
     return render_template('transactions.html', data=data)
 
-@app.route("/register", methods=['POST']) #mining the proof of work 
+@app.route("/register", methods=['POST']) #mining the proof of work
 def register():
     global data
     node = {}
@@ -63,7 +63,8 @@ def register():
     # TODO: make changes to frontend to acknowledge registration
     if request.headers['Content-Type'] == 'application/json':
         return jsonify(block), 200
-    return render_template('manufacturer.html')
+    else:
+        return render_template('manufacturer.html')
 
 
 @app.route("/transfer", methods=['POST'])
@@ -91,7 +92,7 @@ def mine():
     # last_block = blockchain.last_block
     # last_proof = last_block['proof']
     # proof = blockchain.proof_of_work(last_proof)
-    
+
     # previous_hash = blockchain.hash(last_block)
     # block = blockchain.new_block(proof, previous_hash)
 
@@ -105,11 +106,11 @@ def mine():
     #     quantity=1,
     #     link="empty"
     # )
-    
+
     # # Forge the new Block by adding it to the chain
     # previous_hash = blockchain.hash(last_block)
     # block = blockchain.new_block(proof, previous_hash)
-    
+
     # response = {
     #     'message': "New Block Forged",
     #     'index': block['index'],
@@ -146,6 +147,25 @@ def new_transaction(id):
     values = request.get_json()
     block = blockchain.new_transaction(values['old_owner'], values['new_owner'], id)
     return jsonify(block),200
+
+
+'''
+Added the api for getting all transactions
+'''
+
+
+@app.route('/getAllTransactions', methods=['GET'])
+def getAllTransaction():
+    transaction = []
+    chain = blockchain.chain
+    for block in chain:
+        for t in block['transactions']:
+            transaction.append(t)
+    return jsonify(transaction), 200
+
+
+
+
 
 
 @app.route('/chain', methods=['GET'])
