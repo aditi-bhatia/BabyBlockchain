@@ -34,13 +34,22 @@ def txn():
 def register():
     global data
     node = {}
-    node['product_id'] = request.form['upc'].strip()
-    node['product_name'] = request.form['product'].strip()
-    node['link'] = request.form['link'].strip()
-    node['quantity'] = request.form['quantity'].strip()
-    node['price'] = request.form['price'].strip()
-    node['manufacturer'] = request.form['seller'].strip()
-    data[node['product_id']] = node
+    if request.headers['Content-Type'] == 'application/json':
+        foo = request.get_json()
+        node['product_id'] = foo['upc']
+        node['product_name'] = foo['product']
+        node['link'] = foo['link']
+        node['quantity'] = foo['quantity']
+        node['price'] = foo['price']
+        node['manufacturer'] = foo['manufacturer']
+    else:
+        node['product_id'] = request.form['upc'].strip()
+        node['product_name'] = request.form['product'].strip()
+        node['link'] = request.form['link'].strip()
+        node['quantity'] = request.form['quantity'].strip()
+        node['price'] = request.form['price'].strip()
+        node['manufacturer'] = request.form['seller'].strip()
+        data[node['product_id']] = node
 
     # TODO: create block
     last_block = blockchain.last_block
@@ -52,8 +61,8 @@ def register():
     block = blockchain.new_block(proof, previous_hash, node)
 
     # TODO: make changes to frontend to acknowledge registration
-    # return jsonify(block), 200
-    return render_template('manufacturer.html')
+    return jsonify(block), 200
+    #return render_template('manufacturer.html')
 
 
 @app.route("/transfer", methods=['POST'])
@@ -146,12 +155,17 @@ def full_chain():
     }
     return jsonify(response), 200
 
-@app.route('/transact/<id>', methods=['GET'])
+@app.route('/transaction/<id>', methods=['GET']) #get transaction by transaction ID
 def new_action(id):
     #data = requests.get(f'http://127.0.0.1:5001/chain')
     response=blockchain.get_transaction(id)
     return jsonify(response),200
 
+@app.route('/product/<id>', methods=['GET']) #get product by product ID
+def get_product(id):
+    #data = requests.get(f'http://127.0.0.1:5001/chain')
+    response=blockchain.get_block(id)
+    return jsonify(response),200
 
 
 @app.route('/nodes/register', methods=['POST'])
