@@ -61,8 +61,9 @@ def register():
     block = blockchain.new_block(proof, previous_hash, node)
 
     # TODO: make changes to frontend to acknowledge registration
-    return jsonify(block), 200
-    #return render_template('manufacturer.html')
+    if request.headers['Content-Type'] == 'application/json':
+        return jsonify(block), 200
+    return render_template('manufacturer.html')
 
 
 @app.route("/transfer", methods=['POST'])
