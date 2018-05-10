@@ -10,6 +10,14 @@ Venkat Pushpak Gollamudi
 Aravindhan	Elayakumar
 
 Akinfemi	Akin-Aluko
+## Technology used
+-> Flask
+-> Python3
+-> Merkle Trees (tools)
+-> HTML/CSS/Javascript/Bootstrap
+-> Consensus algorithm
+-> Replication
+-> Proof of Work
 
 ## How to run
 #### Start nodes
