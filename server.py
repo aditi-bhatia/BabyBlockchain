@@ -63,8 +63,7 @@ def register():
     # TODO: make changes to frontend to acknowledge registration
     if request.headers['Content-Type'] == 'application/json':
         return jsonify(block), 200
-    else:
-        return render_template('manufacturer.html')
+    return render_template('manufacturer.html')
 
 
 @app.route("/transfer", methods=['POST'])
